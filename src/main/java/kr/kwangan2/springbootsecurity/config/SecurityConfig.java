@@ -24,6 +24,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity security) throws Exception {
 		
+		security.csrf().disable();
+		security.formLogin().loginPage("/login").defaultSuccessUrl("/loginSuccess", true);
 		security.exceptionHandling().accessDeniedPage("/accessDenied");
 		security.logout().invalidateHttpSession(true).logoutSuccessUrl("/login");
 		security.userDetailsService(boardUserDetailsService);
